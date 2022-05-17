@@ -8,7 +8,7 @@ const Review = ({ reviews }) => {
                 <div class="card-body">
                     <p>{review}</p>
 
-                    <div className='flex items-center my-3'>
+                    <div className='flex items-center my-2'>
                         <div class="avatar">
                             <div class="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 <img src={img} alt='' />
