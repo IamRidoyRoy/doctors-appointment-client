@@ -43,7 +43,7 @@ const Services = () => {
             </div>
             {/* Exceptional Hero Section */}
             <div>
-                <div className=" min-h-screen ">
+                <div className="min-h-screen ">
                     <div className="hero-content flex-col lg:flex-row">
                         <img src={treatment} className="max-w-sm rounded-lg shadow-2xl" alt='' />
                         <div>

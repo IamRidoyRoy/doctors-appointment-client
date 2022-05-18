@@ -1,7 +1,7 @@
 import React from 'react';
 import PrimaryButton from '../Shared/PrimaryButton';
 import appointment from '../../../assets/images/appointment.png'
-const ContactUs = () => {
+const Contact = () => {
     return (
         <section className='my-12 p-12'
             style={{
@@ -26,4 +26,4 @@ const ContactUs = () => {
     );
 };
 
-export default ContactUs;
+export default Contact;
