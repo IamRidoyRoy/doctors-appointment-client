@@ -6,11 +6,12 @@ import ContactUs from './components/Pages/ContactUs/ContactUs';
 import Home from './components/Pages/Home/Home';
 import Login from './components/Pages/Login/Login';
 import Reviews from './components/Pages/Reviews/Reviews';
+import Footer from './components/Pages/Shared/Footer';
 import Navbar from './components/Pages/Shared/Navbar';
 
 function App() {
   return (
-    <div >
+    <div className='max-w-7xl	px-12' >
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>} ></Route>
@@ -21,6 +22,7 @@ function App() {
         <Route path='/contactus' element={<ContactUs></ContactUs>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
