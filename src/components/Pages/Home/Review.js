@@ -4,7 +4,8 @@ const Review = ({ reviews }) => {
     const { name, location, img, review } = reviews
     return (
 
-        <div className="card w-96 bg-base-100 shadow-xl mt-5 ">
+        <div className="card lg:max-w-96 bg-base-100 shadow-xl mt-5  ">
+
             <div className="card-body">
                 <p>{review}</p>
 

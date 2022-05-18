@@ -14,9 +14,9 @@ const ContactUs = () => {
             </div>
             <div className='flex items-center justify-center mt-12'>
                 <form action="">
-                    <input className='border w-96 p-2 mb-2 rounded-lg bg-white' type="email" placeholder='Email Address' name="email" id="" /><br />
-                    <input className='border w-96 p-2 mb-2 rounded-lg bg-white' type="text" placeholder='Subject' name="subject" id="" /><br />
-                    <textarea className='border w-96 p-2 mb-2 rounded-lg bg-white' placeholder='Your Message'></textarea>
+                    <input className='border w-72 lg:w-96 p-2 mb-2 rounded-lg bg-white' type="email" placeholder='Email Address' name="email" id="" /><br />
+                    <input className='border w-72 lg:w-96 p-2 mb-2 rounded-lg bg-white' type="text" placeholder='Subject' name="subject" id="" /><br />
+                    <textarea className='border w-72 lg:w-96 p-2 mb-2 rounded-lg bg-white' placeholder='Your Message'></textarea>
                     <div className='text-center'>
                         <PrimaryButton >Submit</PrimaryButton>
                     </div>

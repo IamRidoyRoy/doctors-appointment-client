@@ -33,7 +33,7 @@ const Services = () => {
                 <h2 className='text-4xl'>Services We Provide</h2>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12  gap-5'>
                 {
                     services.map(service => <Service
                         key={service._id}
@@ -43,7 +43,7 @@ const Services = () => {
             </div>
             {/* Exceptional Hero Section */}
             <div>
-                <div className="hero min-h-screen ">
+                <div className=" min-h-screen ">
                     <div className="hero-content flex-col lg:flex-row">
                         <img src={treatment} className="max-w-sm rounded-lg shadow-2xl" alt='' />
                         <div>
