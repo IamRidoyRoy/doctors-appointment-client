@@ -23,7 +23,8 @@ const BookingAppointment = ({ treatment, date, setTreatment }) => {
                             {
                                 slots.map(slot => <option>{slot}</option>)
                             }
-                        </select>                        <input type="text" placeholder="Full name" class="input input-bordered w-full max-w-xs" />
+                        </select>
+                        <input type="text" placeholder="Full name" class="input input-bordered w-full max-w-xs" />
                         <input type="text" placeholder="Phone number" class="input input-bordered w-full max-w-xs" />
                         <input type="text" placeholder="Email" class="input input-bordered w-full max-w-xs" />
                         <input type="submit" value='Submit' class="btn btn-secondary w-full max-w-xs" />
