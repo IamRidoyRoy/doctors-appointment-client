@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 const Login = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    console.log(user);
+    // console.log(user);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -16,52 +16,58 @@ const Login = () => {
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <form onSubmit={handleSubmit(onSubmit)}>
-
                         <label class="label">
                             <span class="label-text">Your Email</span>
                         </label>
                         <input
                             type="email" placeholder="Email" class="input input-bordered w-full max-w-xs"
                             {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: 'Email is required'
+                                },
+
                                 pattern: {
-                                    value: /[A-Za-z]{3}/,
-                                    message: 'error message' // JS only: <p>error message</p> TS only support string
+                                    value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                                    message: 'Provide a valid email'
                                 }
                             })}
-                        // {errors.firstName?.type === 'required' && "First name is required"}
 
                         />
-
                         <label class="label">
-                            <span class="label-text">Password</span>
+                            {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                            {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+
+                        </label>
+                        <label class="label">
+                            <span class="label-text">Your Password</span>
                         </label>
                         <input
                             type="password" placeholder="Password" class="input input-bordered w-full max-w-xs"
-                            {...register("email", {
-                                pattern: {
-                                    value: /[A-Za-z]{3}/,
-                                    message: 'error message'
+                            {...register("password", {
+                                required: {
+                                    value: true,
+                                    message: 'Password is required'
+                                },
+
+                                minLength: {
+                                    value: 6,
+                                    message: 'Must be 6 character or longer'
                                 }
                             })}
-                        // {errors.firstName?.type === 'required' && "First name is required"}
 
                         />
                         <label class="label">
-                            <span class="label-text-alt">Forgot Password?</span>
+                            {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                            {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
                         </label>
 
-                        <input />
-
-
-                        <input {...register("lastName", { required: true })} />
-                        {errors.lastName && "Last name is required"}
-
-                        <input type="submit" />
+                        <div className="card-actions justify-center">
+                            <input className=" btn  w-full max-w-xs" type="submit" value='Login' />
+                        </div>
                     </form>
 
-                    <div className="card-actions justify-center">
-                        <button className="btn btn-wide">Login</button>
-                    </div>
+
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()} className="btn btn-outline" >Sign in with Google</button>
 
