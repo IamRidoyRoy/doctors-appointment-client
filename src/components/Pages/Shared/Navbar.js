@@ -16,9 +16,7 @@ const Navbar = () => {
         <li><Link to='/appointment'>Appoinment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/contactus'>Contact Us</Link></li>
-        <li>{
-            user ? <button onClick={logout} className='btn btn-ghost'>Sign Out</button> : <Link to='/login'>Login</Link>
-        }</li>
+
     </>
     return (
         <div>
@@ -35,12 +33,14 @@ const Navbar = () => {
                     <a className="btn btn-ghost normal-case text-xl">Doctors Appoinment</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0">
+                    <ul className="menu menu-horizontal p-0 ">
                         {menuItem}
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                    {
+                        user ? <button onClick={logout} className='btn btn-ghost'>Sign Out</button> : <Link className='btn btn-ghost' to='/login'>Login</Link>
+                    }
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ import SignUp from './components/Pages/LogIn_SignUp/SignUp';
 import Reviews from './components/Pages/Reviews/Reviews';
 import Footer from './components/Pages/Shared/Footer';
 import Navbar from './components/Pages/Shared/Navbar';
+import RequireAuth from './components/Pages/Shared/RequireAuth';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Route path='/' element={<Home></Home>} ></Route>
         <Route path='/home' element={<Home></Home>} ></Route>
         <Route path='/about' element={<About></About>}></Route>
-        <Route path='/appointment' element={<Appointment></Appointment>} ></Route>
+        <Route path='/appointment' element={
+          <RequireAuth><Appointment></Appointment></RequireAuth>
+        } ></Route>
         <Route path='/reviews' element={<Reviews></Reviews>} ></Route>
         <Route path='/contactus' element={<ContactUs></ContactUs>} ></Route>
         <Route path='/login' element={<Login></Login>} ></Route>
