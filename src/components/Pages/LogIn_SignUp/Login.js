@@ -4,12 +4,12 @@ import auth from '../../../Firebase.init';
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    const navigate = useNavigate();
     // Sign in with Email & Password validation 
     const [
         signInWithEmailAndPassword,
@@ -17,8 +17,10 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
+        navigate('/appointment');
         console.log(data);
     };
 
