@@ -2,14 +2,32 @@ import React from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase.init';
 import { useForm } from "react-hook-form";
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Loading from '../Shared/Loading';
 
 const Login = () => {
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    // console.log(user);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    // Sign in with Email & Password validation 
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
     const onSubmit = data => {
-        console.log(data)
+        signInWithEmailAndPassword(data.email, data.password)
+        console.log(data);
     };
+
+    if (loading || gLoading) {
+        return <Loading></Loading>
+    }
+    let signInError;
+    if (error || gError) {
+        signInError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>
+    }
 
     return (
         <div className="flex justify-center items-center h-screen">
@@ -62,12 +80,11 @@ const Login = () => {
                             {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
                         </label>
 
+                        {signInError}
                         <div className="card-actions justify-center">
                             <input className=" btn  w-full max-w-xs" type="submit" value='Login' />
                         </div>
                     </form>
-
-
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()} className="btn btn-outline" >Sign in with Google</button>
 
