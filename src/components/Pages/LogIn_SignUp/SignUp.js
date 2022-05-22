@@ -1,23 +1,23 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase.init';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    // Sign in with Email & Password validation 
+    // Sign Up with Email & Password validation 
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
     const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password)
+        createUserWithEmailAndPassword(data.email, data.password)
         console.log(data);
     };
 
@@ -33,7 +33,25 @@ const Login = () => {
         <div className="flex justify-center items-center h-screen">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
+                    <h3 className='text-4xl font-bold text-center mb-2'>Sign Up</h3>
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <label class="label">
+                            <span class="label-text">Your Name</span>
+                        </label>
+                        <input
+                            type="name" placeholder="Name" class="input input-bordered w-full max-w-xs"
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: 'Name is required'
+                                },
+                            })}
+
+                        />
+                        <label class="label">
+                            {errors.name?.type === 'required' && <span class="label-text-alt text-red-500">{errors.name.message}</span>}
+
+                        </label>
                         <label class="label">
                             <span class="label-text">Your Email</span>
                         </label>
@@ -82,9 +100,10 @@ const Login = () => {
 
                         {signInError}
                         <div className="card-actions justify-center">
-                            <input className=" btn  w-full max-w-xs" type="submit" value='Login' />
+                            <input className=" btn  w-full max-w-xs" type="submit" value='Sign Up' />
                         </div>
                     </form>
+                    <p className='text-sm text-center'>Already have an Account? <Link className='text-secondary font-bold' to='/login'>Login</Link></p>
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()} className="btn btn-outline" >Sign in with Google</button>
 
@@ -94,4 +113,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
