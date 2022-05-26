@@ -10,7 +10,7 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
-    // Sign Up with Email & Password validation 
+    // Sign Up with Email & Password validation(This validation is done)
     const [
         createUserWithEmailAndPassword,
         user,

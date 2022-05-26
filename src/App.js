@@ -10,7 +10,8 @@ import Reviews from './components/Pages/Reviews/Reviews';
 import Footer from './components/Pages/Shared/Footer';
 import Navbar from './components/Pages/Shared/Navbar';
 import RequireAuth from './components/Pages/Shared/RequireAuth';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div className='max-w-7xl	' >
@@ -28,6 +29,7 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>} ></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
