@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import MyAppointment from './components/Pages/Dashboard/MyAppointment';
 import MyReview from './components/Pages/Dashboard/MyReview';
+import MyHistory from './components/Pages/Dashboard/MyHistory';
 function App() {
   return (
     <div className='max-w-7xl	' >
@@ -35,6 +36,7 @@ function App() {
         }>
           <Route index element={<MyAppointment></MyAppointment>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
+          <Route path='history' element={<MyHistory></MyHistory>}></Route>
         </Route>
         <Route path='/reviews' element={<Reviews></Reviews>} ></Route>
         <Route path='/contactus' element={<ContactUs></ContactUs>} ></Route>
