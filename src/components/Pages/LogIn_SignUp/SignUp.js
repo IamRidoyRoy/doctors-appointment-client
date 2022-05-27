@@ -3,7 +3,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import auth from '../../../Firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../../Hooks/useToken';
 
 const SignUp = () => {
@@ -18,7 +18,8 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const [token] = useToken(user || gUser);
     const onSubmit = async data => {
@@ -31,7 +32,7 @@ const SignUp = () => {
         return <Loading></Loading>
     }
     if (token) {
-        navigate('/appointment');
+        navigate(from, { replace: true });
     }
     let signInError;
     if (error || gError || updateError) {

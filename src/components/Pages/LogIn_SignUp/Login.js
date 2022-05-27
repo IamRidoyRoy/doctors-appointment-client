@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase.init';
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../Hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
 
     // Sign in with Email & Password validation 
     const [
@@ -21,22 +19,31 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    let signInError;
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const [token] = useToken(user || user);
+
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
-        navigate('/appointment');
+        navigate(from, { replace: true });
         console.log(data);
     };
 
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
     if (loading || gLoading) {
         return <Loading></Loading>
     }
-    let signInError;
+
     if (error || gError) {
         signInError = <p className='text-red-500 text-sm'>{error?.message || gError?.message}</p>
     }
-    if (user || gUser) {
-        navigate(from, { replace: true });
-    }
+
 
     return (
         <div className="flex justify-center items-center h-screen">
