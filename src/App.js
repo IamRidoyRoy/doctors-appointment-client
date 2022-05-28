@@ -16,6 +16,7 @@ import Dashboard from './components/Pages/Dashboard/Dashboard';
 import MyAppointment from './components/Pages/Dashboard/MyAppointment';
 import MyReview from './components/Pages/Dashboard/MyReview';
 import MyHistory from './components/Pages/Dashboard/MyHistory';
+import Users from './components/Pages/Dashboard/Users';
 function App() {
   return (
     <div className='max-w-7xl	' >
@@ -37,6 +38,7 @@ function App() {
           <Route index element={<MyAppointment></MyAppointment>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
           <Route path='history' element={<MyHistory></MyHistory>}></Route>
+          <Route path='users' element={<Users></Users>}></Route>
         </Route>
         <Route path='/reviews' element={<Reviews></Reviews>} ></Route>
         <Route path='/contactus' element={<ContactUs></ContactUs>} ></Route>

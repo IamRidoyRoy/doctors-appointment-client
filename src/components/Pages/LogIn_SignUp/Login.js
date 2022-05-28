@@ -23,7 +23,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    const [token] = useToken(user || user);
+    const [token] = useToken(user || gUser);
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
